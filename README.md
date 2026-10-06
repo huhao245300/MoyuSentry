@@ -94,12 +94,6 @@ MoyuSentry 是一个**菜单栏常驻的 AI Agent 状态哨兵**：它在后台�
 - **风险评分**：敏感路径 / 危险命令（`PathGuard` + `RiskScorer`）单独成节；
 - 支持**会话相位兜底**：只有会话活动、没有文件事件的家，也会按家补齐进摘要。
 
-### 9. 学习与调试闭环
-
-- **Agent 调试页**：逐家跑探针，把「判定链」的每一环（进程 → Worker → 会话来源 → 新鲜度 → 项目归因 → 相位）红/绿展示，误判一眼定位；
-- **未识别进程区块**：列出在工程目录里活动、但还没登记的新 Agent —— 发现即收录；
-- **自学习（实验性）**：特征提取 + 规则分类 + 相似度匹配，喂给阈值自适应。
-
 ---
 
 ## 支持的 AI Agent
@@ -160,48 +154,6 @@ MoyuSentry 是一个**菜单栏常驻的 AI Agent 状态哨兵**：它在后台�
 
 ---
 
-## 技术架构
-
-**模块划分** —— 93 个 Swift 源文件 · 纯 SwiftUI + AppKit · 无第三方依赖
-
-```
-MoyuSentry/
-├── App/           应用生命周期、主模型、旧域迁移
-├── Discovery/     ★ Agent 注册表与四层证据采集（18 家 / 进程 / 会话 / 网络）
-├── Models/        相位、项目、风险评分、路径守卫
-├── Storage/       统计入库、游标追赶、每日相位日志
-├── Notch/         刘海 / 悬浮窗几何、面板控制器、胶囊视图
-├── UI/            主窗口、统计页、Agent 调试页、主题
-├── Licensing/     买断授权、试用期
-├── Backend/       设备指纹与授权校验客户端
-├── Learning/      自学习实验模块（不参与相位判定）
-└── Tests/         判定链与风险评分的验证用例
-```
-
-**工程约定**
-
-| 约定     | 说明                                                              |
-| ------ | --------------------------------------------------------------- |
-| 唯一维护入口 | `Discovery/AgentRegistry.swift` —— 改它 = 改「支持哪些 Agent」           |
-| 自动同步   | 使用 `PBXFileSystemSynchronizedRootGroup`，目录内新增源文件**自动进编译**，无需改 pbxproj |
-| 免构建校验  | `swiftc -typecheck` 全量类型检查，秒级反馈，不必启动 Xcode                       |
-| 并发模型   | `SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor`；`Discovery/` 内纯计算属性显式标 `nonisolated` |
-
----
-
-## 快速开始
-
-**环境要求**：macOS 14.0+ · Xcode 15+
-
-```bash
-# 1. 克隆仓库
-git clone https://github.com/huhao245300/MoyuSentry.git
-cd MoyuSentry
-
-# 2. 打开工程
-open MoyuSentry.xcodeproj
-
-# 3. 在 Xcode 中按 ⌘R 运行
 ```
 
 **首次启动会看到什么**
