@@ -2,6 +2,7 @@
 
 > **你的 AI 编程 Agent，到底在干活、在等你，还是已经干完了？**  
 > MoyuSentry 常驻 macOS 刘海 / 菜单栏，把本机所有 AI 编程工具的运行状态，压缩成一眼可读的三色信号。
+ 官网地址：https://www.jixihh.com/glance
 
 ![Platform](https://img.shields.io/badge/platform-macOS%2014%2B-000000?logo=apple)
 
