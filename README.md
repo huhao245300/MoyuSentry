@@ -1,5 +1,8 @@
 # MoyuSentry
 
+<img width="125" height="125" alt="Icon-iOS-Default-1024@1x" src="https://github.com/user-attachments/assets/b1d4af74-a223-409b-ba17-83bab3829a59" />
+
+
 > **你的 AI 编程 Agent，到底在干活、在等你，还是已经干完了？**  
 > MoyuSentry 常驻 macOS 刘海 / 菜单栏，把本机所有 AI 编程工具的运行状态，压缩成一眼可读的三色信号。
  官网地址：https://www.jixihh.com/glance
